@@ -1,6 +1,4 @@
-**📊 COVID-19 India Portal**
-
-This is a backend application built using Node.js, Express, and SQLite that manages COVID-19 data across various states and districts in India. The portal supports user authentication using JWT tokens and provides secure APIs for managing states and districts' COVID-19 statistics.
+**📊 COVID-19 Dashboard**
 
 In this project let's build a **Covid19 Dashboard** by applying the concepts we have learned till now. This project allows you to practice the concepts and techniques learned till React Course and apply them in a concrete project.
 
