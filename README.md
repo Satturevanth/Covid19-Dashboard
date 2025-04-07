@@ -1,4 +1,4 @@
-📊 COVID-19 India Portal
+**📊 COVID-19 India Portal**
 
 This is a backend application built using Node.js, Express, and SQLite that manages COVID-19 data across various states and districts in India. The portal supports user authentication using JWT tokens and provides secure APIs for managing states and districts' COVID-19 statistics.
 
