@@ -1,477 +1,291 @@
-In this project let's build a **Covid19 Dashboard** by applying the concepts we have learned till now. This project allows you to practice the concepts and techniques learned till React Course and apply them in a concrete project.
+📊 COVID-19 India Portal
 
-You will demonstrate your skills by creating an app that will fetch data from an internal server using a **class component**, displaying that data, using **component lifecycle** methods, **routing** concepts and adding responsiveness to the website.
+This is a backend application built using Node.js, Express, and SQLite that manages COVID-19 data across various states and districts in India. The portal supports user authentication using JWT tokens and provides secure APIs for managing states and districts' COVID-19 statistics.
 
-This is an individual assessment. All work must be your own.
+💠 Technologies Used
 
-### Prerequisites
+Node.js
 
-#### UI Prerequisites
+Express.js
 
-<details>
-<summary>Click to view</summary>
+SQLite
 
-- What is Figma?
-  - Figma is a vector graphics editor and prototyping tool which is primarily web-based. You can check more info on the <a href="https://www.figma.com/" target="_blank">Website</a>
-- Create a Free account in Figma
-  - Kindly follow the instructions as shown in <a href="https://www.youtube.com/watch?v=hrHL2VLMl7g" target="_blank">this</a> video to create a Free Figma account. Watch the video upto **00:55**
-- How to Check CSS in Figma?
-  - Kindly follow the instructions as shown in <a href="https://youtu.be/B242nuM3y2s?t=80" target="_blank">this</a> video to check CSS in the Figma screen. Watch the video upto **02:45**
-- Export Images in Figma screen
+JWT (JSON Web Token)
 
-  - Kindly follow the instructions as shown in <a href="https://www.youtube.com/watch?v=NpzL1MONwaw" target="_blank">this</a> video to export images from the Figma screen
-  - Click on the Export button to get Export options as shown in the below image
+bcrypt (for password hashing)
 
-  <div style="text-align:center;margin:10px 0px 0px 45px;width:200px;">
-    <img src="https://assets.ccbp.in/frontend/react-js/figma-export-option.png" />
-  </div>
+📁 Database Schema
 
-- Upload your exported images from Figma to Cloudinary and get image URLs from Cloudinary. Refer <a href="https://learning.ccbp.in/projects/course?c_id=fe4c935d-3ad5-4bb8-a1a5-9b045ae70010&s_id=2f72d6fe-09a7-4c0a-b0db-196740c853a0&t_id=6535e48d-fb4e-45c4-9654-3da423c79e26" target="_blank">this</a> session for better understanding
+🗂️ state Table
 
-</details>
+Column Name
 
-#### Design Files
+Type
 
-<details>
-<summary>Click to view</summary>
+state_id
 
-- You can check the **Design Files** for different devices <a href="https://www.figma.com/file/lGl9tRXcsmxicjTITM2A8P/Covid19_Dashboard?node-id=0%3A1" target="_blank" >here</a>
+INTEGER
 
-</details>
+state_name
 
-### Set Up Instructions
+TEXT
 
-<details>
-<summary>Click to view</summary>
+population
 
-- Download dependencies by running `npm install`
-- Start up the app using `npm start`
-</details>
+INTEGER
 
-### Completion Instructions
+🗂️ district Table
 
-<details>
-<summary>Functionality to be added</summary>
+Column Name
 
-The app must have the following functionalities
+Type
 
-- Users should be able to navigate to Home, About routes using links in Navbar
-- The website should be responsive in mobile view, tablet view as well (Use Media Queries to achieve the responsive website)
+district_id
 
-- **Home Route**
+INTEGER
 
-  - An HTTP GET request should be made to the Home Route API URL
-    - **_Loader_** should be displayed while fetching the data
-    - After the data is fetched successfully,
-      - Stats of **Confirmed**, **Active**, **Recovered**, **Deceased** cases of **India** should be equal to the respective data received from the response
-      - List of State/UT should be displayed with corresponding **Confirmed**, **Active**, **Recovered**, **Deceased** cases count
-      - When the **Ascending Icon** (**FcGenericSortingAsc** react-icon) is clicked, then the list of State/UT should be sorted with **Ascending Order** based on State/UT name
-      - When the **Descending Icon** (**FcGenericSortingDesc** react-icon) is clicked, then the list of State/UT should be sorted with **Descending Order** based on State/UT name
-  - Footer should be displayed as shown in the Figma
+district_name
 
-- **Search Functionality**
+TEXT
 
-  - Search should be case **insensitive**. This means Searching for `AN` or `an` or `An` should give the same search results
-  - When the State/UT is searched by using the State/UT name, then the list of State/UT names matched with the search text should be displayed
-  - When the Specific State/UT is clicked in the searched State/UT, then the page should be navigated to the Specific State/UT
+state_id
 
-- **State-Specific Route**
+INTEGER
 
-  - An HTTP GET request should be made to the State-Specific Route API URL
-    - **_Loader_** should be displayed while fetching the data
-    - After the data is fetched successfully,
-      - State name and last updated date should be equal to the State name received from the response
-      - Stats of **Confirmed**, **Active**, **Recovered**, **Deceased** cases of specific state should be equal to the respective data received from the response
-      - Tested count should be equal to the tested count received from the response
-      - Initially districts with Descending order of their **Confirmed Cases** should be displayed in the Top Districts
-      - When the **Active Cases** card is clicked, then the Top Districts and **Bar Graph** should be changed to **Descending order** by their **Active Cases** count
-      - When the **Confirmed Cases** card is clicked, then the Top Districts and **Bar Graph** should be changed to **Descending order** by their **Confirmed Cases** count
-      - When the **Recovered Cases** card is clicked, then the Top Districts and **Bar Graph** should be changed to **Descending order** by their **Recovered Cases** count
-      - When the **Deceased Cases** card is clicked, then the Top Districts and **Bar Graph** should be changed to **Descending order** by their **Deceased Cases** count
-      - **Bar Graph** should be displayed with the last 10 days of Covid19 cases data
-      - Initially for Spread Trends, **Daily Data** should be displayed
-    - Footer should be displayed as shown in the Figma
+cases
 
-- **Not Found Route**
+INTEGER
 
-  - When a random path is provided in the URL, then the page should be navigated to the Not Found Route
+cured
 
-- **About Route**
+INTEGER
 
-  - An HTTP GET request should be made to the About Route API URL
-    - **_Loader_** should be displayed while fetching the data
-    - After the data is fetched successfully, the response received should be displayed
-    - List of **faqs** should be displayed
-    - Footer should be displayed as shown in the Figma
+active
 
-- **Header**
+INTEGER
 
-  - When the **COVID19INDIA** heading element in the Header is clicked, then the page should be navigated to the Home Route
-  - When the **Home** link in the Header is clicked, then the page should be navigated to the Home Route
-  - When the **About** link in the Header is clicked, then the page should be navigated to the My About Route
+deaths
 
-</details>
+INTEGER
 
-### Quick Tips
+🧑‍💻 user Table (for login authentication)
 
-<details>
-<summary>Click to view</summary>
+Sample credentials for testing:
 
-- Conversion of Object items to Array Items <a href="https://codesandbox.io/s/conversion-of-object-items-to-array-items-vyy1s" target="_blank">CodeSandbox</a>
-- Use React Charts package to implement given charts
-  - React charts <a href="https://www.npmjs.com/package/recharts" target="_blank" >Documentation</a>.
-  - Line chart and Bar Chart implementation <a href="https://codesandbox.io/s/line-chart-and-bar-chart-implementation-forked-vghxj?file=/src/App.js" target="_blank">CodeSandbox</a>
-  - Multi area chart implementation <a href="https://codesandbox.io/s/multi-area-chart-implementation-dkhyc?file=/src/App.js" target="_blank">CodeSandbox</a>
-- Implement Select fields using this package
-  - React select <a href="https://www.npmjs.com/package/react-select/v/2.4.3" target="_blank">Documentation</a>
-  - React select implementation <a href="https://codesandbox.io/s/react-select-dropdown-example-forked-4ssev" target="_blank">CodeSandbox</a>
-- Usage of extracting date wise stats <a href="https://codesandbox.io/s/getting-specific-state-datewise-data-j4vus" target="_blank">CodeSandbox</a>
+{
+  "username": "christopher_phillips",
+  "password": "christy@123"
+}
 
-</details>
+🔐 Authentication Flow
 
-### Important Note
+All APIs (except login) require a valid JWT token for access.
 
-**Below Instructions are needed to pass the test cases.**
+🔑 Login API
 
-<details>
-<summary>Click to view</summary>
+Endpoint: /login/Method: POST
 
-- **Note:**
+✅ Request Body
 
-  - Don't use any third-party packages other than packages mentioned in the **Quick Tips**
+{
+  "username": "christopher_phillips",
+  "password": "christy@123"
+}
 
-  - For Mini Projects, you have to use normal HTML elements to style the React Components. Usage of `styled-components` (CSS in JS) to style React components are not supported in Mini Projects. Test cases won't be passed, if you use styled-components
+♻️ Scenarios:
 
-  - Refer to the below Example for the usage of `testid` in the HTML elements
+Unregistered user: Returns status 400 with message Invalid user
 
-    - Example: `<div testid="countryWideConfirmedCases" className="country-wide-confirmed-cases"/>`
+Wrong password: Returns status 400 with message Invalid password
 
-  - Get all states data from the response of Get Countrywide covid19 cases API by mapping the state's list that we have provided you in the App.js file
+Success: Returns status 200 with a JWT token
 
-  - If you receive any type of covid19 cases count of a state as undefined from the API call, store that value as 0
+✅ Response (Success)
 
-  - Example:- You have received the confirmed cases count, population for the State Goa as undefined so instead of storing undefined store confirmed cases of Goa as 0. Like this for all states and districts store 0 if you receive any count as undefined
+{
+  "jwtToken": "ak2284ns8Di32......"
+}
 
-  - Your code will contain a `Counter` Component in the path `src/components` you can modify the component based on your use case or you can ignore it
+🔐 JWT Authentication
 
-  - Formulae for active cases `activeCases = confirmedCases-(recoveredCases+deceasedCases)`
+All routes except /login/ must include a valid JWT token in the header:
 
-  - Adding individual states Covid19 data will give you national wide Covid19 data
+Authorization: Bearer <jwt_token>
 
-  - **Don't wrap** the `Bar Chart` or `Line Chart` with `ResponsiveContainer`
+❌ If token is missing or invalid:
 
-- Routes:
+Status code: 401
 
-  - The Home Route should contain the pathname as `/`
+Body: Invalid JWT Token
 
-  - The State-specific Route should contain the pathname as `/state/:stateCode`
+📡 API Endpoints
 
-    - **Note:** use the particular state code in place of id
+✅ API 1: Get All States
 
-  - The About Route should contain the pathname as `/about`
+Path: /states/
 
-- Header:
+Method: GET
 
-  - Your code should contain a `Header` Component in the path `src/components`
+Description: Returns all states
 
-- Footer:
+Response:
 
-  - Your code should contain a `Footer` Component in the path `src/components`
+[
+  {
+    "stateId": 1,
+    "stateName": "Andaman and Nicobar Islands",
+    "population": 380581
+  },
+  ...
+]
 
-  - The Footer component should consist of all social icons from the `react-icons` third-party library
+✅ API 2: Get State by ID
 
-  - The Footer component should consist of the `VscGithubAlt` react icon
+Path: /states/:stateId/
 
-  - The Footer component should consist of the `FiInstagram` react icon
+Method: GET
 
-  - The Footer component should consist of the `FaTwitter` react icon
+Response:
 
-- Home Route:
+{
+  "stateId": 8,
+  "stateName": "Delhi",
+  "population": 16787941
+}
 
-  - The Loader container should contain the test id with value as `homeRouteLoader`
+✅ API 3: Add a New District
 
-  - The States Search results unordered list should contain the test id with value as `searchResultsUnorderedList`
+Path: /districts/
 
-  - The Search bar should contain the `BsSearch` react icon
+Method: POST
 
-  - The State Search results list item should contain a `BiChevronRightSquare` react icon
+Request:
 
-  - The Confirmed cases card should contain the test id with value as `countryWideConfirmedCases`
+{
+  "districtName": "Bagalkot",
+  "stateId": 3,
+  "cases": 2323,
+  "cured": 2000,
+  "active": 315,
+  "deaths": 8
+}
 
-  - The Confirmed cases image in the Confirmed cases container should contain the alt text as `country wide confirmed cases pic`
+Response:
 
-  - The Recovered cases card should contain the test id with value as `countryWideRecoveredCases`
+District Successfully Added
 
-  - The Recovered cases image in the Recovered cases container should contain the alt text as `country wide recovered cases pic`
+✅ API 4: Get District by ID
 
-  - The Active cases card should contain the test id with value as `countryWideActiveCases`
+Path: /districts/:districtId/
 
-  - The Active cases image in the Active cases container should contain the alt text as `country wide active cases pic`
+Method: GET
 
-  - The Deceased cases card should contain the test id with value as `countryWideDeceasedCases`
+Response:
 
-  - The Deceased cases image in the Deceased cases container should contain the alt text as `country wide deceased cases pic`
+{
+  "districtId": 322,
+  "districtName": "Palakkad",
+  "stateId": 17,
+  "cases": 61558,
+  "cured": 59276,
+  "active": 2095,
+  "deaths": 177
+}
 
-  - The Statewise covid19 data table should contain the test id with value as `stateWiseCovidDataTable`
+✅ API 5: Delete District by ID
 
-  - The `FcGenericSortingAsc` react icon should be wrapped with an HTML button element and the Button should contain the test id value as `ascendingSort`
+Path: /districts/:districtId/
 
-  - The `FcGenericSortingDesc` react icon should be wrapped with an HTML button element and the Button should contain the test id value as `descendingSort`
+Method: DELETE
 
-  - Example:
+Response:
 
-    ```html
-    <button type="button" testid="ascendingSort">
-      <FcGenericSortingDesc />
-    </button>
-    ```
+District Removed
 
-  - Place the ascending sort icon and descending sort icon in an HTML container element with the test id attribute value `stateWiseCovidDataTable`
+✅ API 6: Update District by ID
 
-  - Place the total countrywide confirmed cases count, the text `Confirmed` and the image of the confirmed case inside of the HTML container element with the test id attribute value `countryWideConfirmedCases`
+Path: /districts/:districtId/
 
-  - Place the total countrywide active cases count, the text `Active` and the image of the active case inside of the HTML container element with the test id attribute value `countryWideActiveCases`
+Method: PUT
 
-  - Place the total countrywide recovered cases count, the text `Recovered` and the image of the recovered case inside of the HTML container element with the test id attribute value `countryWideRecoveredCases`
+Request:
 
-  - Place the total countrywide deceased cases count, the text `Deceased` and the image of the deceased case inside of the HTML container element with the test id attribute value `countryWideDeceasedCases`
+{
+  "districtName": "Nadia",
+  "stateId": 3,
+  "cases": 9628,
+  "cured": 6524,
+  "active": 3000,
+  "deaths": 104
+}
 
-  - Wrap all the list items of the HTML unordered list element with the test id attribute value `searchResultsUnorderedList` with Link from `react-router-dom`
+Response:
 
-- State-specific Route
+District Details Updated
 
-  - **NOTE:** Wrap all the Line charts with an HTML container element and assign test id attribute value as `lineChartsContainer` to that HTML container element
+✅ API 7: Get State-Wise Stats
 
-  - The GET State details API Loader container should contain the test id with value as `stateDetailsLoader`
+Path: /states/:stateId/stats/
 
-  - The GET Timeline details API Loader container should contain the test id with value as `timelinesDataLoader`
+Method: GET
 
-  - The State-specific Confirmed cases card should contain the test id value as `stateSpecificConfirmedCasesContainer`
+Response:
 
-  - The State-specific confirmed cases image should contain the alt text as `state specific confirmed cases pic`
+{
+  "totalCases": 724355,
+  "totalCured": 615324,
+  "totalActive": 99254,
+  "totalDeaths": 9777
+}
 
-  - The State-specific Active cases card should contain the test id value as `stateSpecificActiveCasesContainer`
+⚙️ Setup Instructions
 
-  - The State-specific confirmed cases image should contain the alt text as `state specific active cases pic`
+Clone the repository
 
-  - The State-specific Recovered cases card should contain the test id value as `stateSpecificRecoveredCasesContainer`
+git clone <your-repo-url>
+cd covid19-india-portal
 
-  - The State-specific confirmed cases image should contain the alt text as `state specific recovered cases pic`
+Install dependencies
 
-  - The State-specific Deceased cases card should contain the test id value as `stateSpecificDeceasedCasesContainer`
+npm install
 
-  - The State-specific confirmed cases image should contain the alt text as `state specific deceased cases pic`
+Run the server
 
-  - Place the total State-specific confirmed cases count, the text `Confirmed` and the image of the confirmed case inside of the HTML container element with the test id attribute value `stateSpecificConfirmedCasesContainer`
+node app.js
 
-  - Place the total State-specific active cases count, the text `Active` and the image of the active case inside of the HTML container element with the test id attribute value `stateSpecificActiveCasesContainer`
+Use tools like Postman or Thunder Client to test the APIs.
 
-  - Place the total State-specific recovered cases count, the text `Recovered` and the image of the recovered case inside of the HTML container element with the test id attribute value `stateSpecificRecoveredCasesContainer`
+✅ Project Features
 
-  - Place the total State-specific deceased cases count, the text `Deceased` and the image of the deceased case inside of the HTML container element with the test id attribute value `stateSpecificDeceasedCasesContainer`
+JWT-based Authentication
 
-  - The Top Districts unordered list should contain the test id attribute with value as `topDistrictsUnorderedList`
+Login API with proper error handling
 
-- About Route
+Full CRUD operations on States & Districts
 
-  - The Loader container should contain the test id value as `aboutRouteLoader`
+Middleware for token validation
 
-  - The Faqs unordered list should contain the test id value as `faqsUnorderedList`
+Clean API responses
 
-</details>
+Easy to extend and maintain
 
-### Resources
+📂 Folder Structure (Suggested)
 
-<details>
-<summary>Data fetch URLs</summary>
+.
+├── app.js
+├── covid19IndiaPortal.db
+├── package.json
+├── node_modules/
+├── utils/
+│   └── authentication.js
+├── routes/
+│   ├── stateRoutes.js
+│   └── districtRoutes.js
+└── controllers/
+    ├── stateController.js
+    └── districtController.js
 
-- Home Route:
+👨‍💼 Author
 
-  - Get stats of confirmed, active, recovered, deceased cases state wise (<u>sum of state wise data will give you national wise data</u>) :
+Revanth SattuBuilt as part of NxtWave’s Full Stack Development Course.
 
-    ```js
-    'https://apis.ccbp.in/covid19-state-wise-data'
-
-    ```
-
-- State-Specific Route:
-
-  - Get tested count, last updated date and stats of confirmed, active,recovered, deceased cases in specific states:
-
-    ```js
-    'https://apis.ccbp.in/covid19-state-wise-data'
-    //(the response contains stats of all the States, you can use a state code (Ex:- "AP") to get specific state stats.)
-
-    ```
-
-  - Get districts (sort to show Top Districts):
-
-    ```js
-    'https://apis.ccbp.in/covid19-state-wise-data'
-    //(the response contains stats of all the States, you can use a state code (Ex:- "AP") to get specific state stats.)
-
-    ```
-
-  - Sample Response for the API Url `https://apis.ccbp.in/covid19-state-wise-data`:
-
-    ```json
-    {
-    "AP":{
-      "districts":{
-         "Anantapur":{
-            "total":{
-               "confirmed":157823,
-               "deceased":1093,
-               "recovered":156679,
-               "tested":787085,
-               "vaccinated1":2659813,
-               "vaccinated2":1556657
-            }
-         }
-      },
-      "meta":{
-         "date":"2021-10-28",
-         "last_updated":"2021-10-28T20:20:18+05:30",
-         "population":397000,
-         "tested":{
-            "date":"2021-10-27",
-            "source":"https://dhs.andaman.gov.in/NewEvents/847.pdf"
-         }
-      },
-      "total":{
-         "confirmed":7651,
-         "deceased":129,
-         "recovered":7516,
-         "tested":592748,
-         "vaccinated1":293644,
-         "vaccinated2":195689
-      }
-    }
-      {...}
-     }
-    ```
-
-  - Get timelines to show spread trends (use timelines data for rendering Bar chart, Line chart and other recharts by date-wise):
-
-    ```js
-    'https://apis.ccbp.in/covid19-timelines-data/AP'
-    //(change state code in URL for other states)
-
-    //(or)
-
-    'https://apis.ccbp.in/covid19-timelines-data'
-    //(the response contains stats of all the States, you can use a state code (Ex:- "AP") to get specific state stats.)
-
-    ```
-
-  - Sample Response
-
-    ```json
-    {
-      "AN": {
-        "dates": {
-          "2021-09-09": {
-            "total": {
-              "confirmed": 7577,
-              "deceased": 129,
-              "recovered": 7441,
-              "tested": 508157,
-              "vaccinated1": 267126,
-              "vaccinated2": 112124
-            }
-          },
-          "2021-09-09": {...}
-        }
-      }
-    }
-    ```
-
-- About Route:
-
-  - Get faqs:
-
-    ```js
-    'https://apis.ccbp.in/covid19-faqs'
-
-    ```
-
-  - Sample Response
-
-    ```json
-    {
-      "faq": [
-        {
-          "answer": "No.",
-          "category": "General",
-          "qno": "1",
-          "question": "Are you official?"
-        }
-      ]
-    }
-    ```
-
-    </details>
-
-### Stretch Goals
-
-If you complete the main features of the project you can try out the below features as well
-
-**Note:** Just a reminder the additional functionality is just extra practice using the tools we have learned. These are not required. If you do not reach the stretch goals, don't worry
-
-<details>
-<summary>Additional Functionality to be added</summary>
-
-- Users should be able to see Themes (Light & Dark) in Navbar
-- **State-Specific Route**
-
-  - India Map with Specific State should be highlighted
-
-- **Vaccination Details Route**
-
-  - An HTTP GET request should be made to the **Vaccination Details API URL**
-    - **_Loader_** should be displayed while fetching the data
-    - After the data is fetched successfully, the response received should be displayed
-      - Page should contain the dropdowns to select state and district
-      - Page should contain the sites Conducting Vaccination, total Registrations, Total Vaccination Doses sections
-      - Page should contain the Vaccination Trends for both by **Doses** and **Ages** section
-
-- **Data Fetch URLs**
-
-  - **Vaccination Details Route:**
-
-    - Get states data:
-
-      ```js
-      'https://apis.ccbp.in/covid19-state-ids'
-
-      ```
-
-    - Get Districts data (state specific):
-
-      ```js
-      'https://apis.ccbp.in/covid19-districts-data/2'
-      //(change state id in URL)
-
-      ```
-
-    - Get sites conducting vaccination, total registrations, total vaccination, vaccination trends, vaccination - category, vaccination by age Details:
-
-      ```js
-      'https://apis.ccbp.in/covid19-vaccination-data'
-      //(change date in URL)
-
-      ```
-
-</details>
-
-### Project Submission Instructions
-
-- For Mini Projects, you can submit the test cases at your own pace. But we suggest you to submit the code to know the percentage of completion through test cases and that score will be considered for your interviews
-
-- Also it's important to publish your code frequently using `Step - 4` in the Instructions tab
-
-> ### _Things to Keep in Mind_
->
-> - All components you implement should go in the `src/components` directory.
-> - **Do not remove the pre-filled code**
-> - Want to quickly review some of the concepts you’ve been learning? Take a look at the Cheat Sheets.
